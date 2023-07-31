@@ -1,0 +1,13 @@
+name: "null_safety"
+description: "dart null safety demonstration"
+
+publish_to: none
+
+environment:
+  sdk: '^3.0.0'
+
+version: 1.0.0
+
+dependencies:
+  lints: ^2.1.1
+

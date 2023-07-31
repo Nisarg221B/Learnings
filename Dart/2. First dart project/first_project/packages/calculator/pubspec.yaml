@@ -1,0 +1,7 @@
+name: calculator
+
+environment:
+  sdk: '^3.0.0'
+dependencies:
+  lints: ^2.1.1
+

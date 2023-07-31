@@ -1,0 +1,13 @@
+name: dart_functions
+
+description: file for learning purpose , containing demos related to functions in dart.
+
+version: 1.0.0
+
+environment:
+    sdk: '^3.0.0'
+
+publish_to: none
+
+dependencies:
+    lints: ^2.1.1

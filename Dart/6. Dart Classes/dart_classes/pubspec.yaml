@@ -1,0 +1,18 @@
+name: dart_classes
+
+description: Learning module for dart classes for personal use
+
+environment:
+    sdk: '^3.0.0'
+
+version: 1.0.0
+
+publish_to: none
+
+dependencies:
+    lints: ^2.1.1
+
+
+
+
+
