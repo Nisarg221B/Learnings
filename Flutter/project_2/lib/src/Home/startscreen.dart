@@ -54,10 +54,9 @@ import 'package:flutter/material.dart';
 
 // using wrap
 class StartScreen extends StatelessWidget {
-  
-  startQuiz() {}
 
-  const StartScreen({super.key});
+  final void Function() startQuiz;
+  const StartScreen({super.key, required this.startQuiz});
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +70,7 @@ class StartScreen extends StatelessWidget {
           crossAxisAlignment: WrapCrossAlignment.center,
           spacing: 90,
           children: [
-            Image.asset('/images/quiz-logo.png', scale: 2),
+            Image.asset('assets/images/quiz-logo.png', scale: 2),
             Wrap(
                 direction: Axis.vertical,
                 crossAxisAlignment: WrapCrossAlignment.center,
@@ -108,34 +107,30 @@ class StartScreen extends StatelessWidget {
   }
 }
 
-
 // using sized box
 class StartScreen2 extends StatelessWidget {
-  
-  startQuiz() {}
-
-  const StartScreen2({super.key});
+  final void Function() startQuiz;
+  const StartScreen2({super.key, required this.startQuiz});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.purple, Colors.blue],
-          begin: Alignment.topLeft,
-          end: Alignment.topRight
-        ),
+            colors: [Colors.purple, Colors.blue],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight),
       ),
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Image.asset(
-              '/images/quiz-logo.png', 
+              'assets/images/quiz-logo.png',
               scale: 2,
               color: const Color.fromARGB(150, 255, 255, 255),
             ),
-            const SizedBox(height:80),
+            const SizedBox(height: 80),
             const Text(
               'Learn Flutter the fun way!',
               style: TextStyle(
@@ -144,20 +139,22 @@ class StartScreen2 extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            const SizedBox(height:30),
+            const SizedBox(height: 30),
             Directionality(
-              textDirection: TextDirection.rtl, 
-              child:  OutlinedButton.icon(
-                        style: const ButtonStyle(
-                          padding: MaterialStatePropertyAll(
-                            EdgeInsets.fromLTRB(25, 20, 25, 20),
-                          ),
-                          foregroundColor: MaterialStatePropertyAll(Colors.white),
-                        ),
-                        onPressed: startQuiz,
-                        label: const Text('Start Quiz'),
-                        icon: const Icon(Icons.arrow_right_alt_sharp),
-                      ),
+              textDirection: TextDirection.rtl,
+              child: OutlinedButton.icon(
+                style: const ButtonStyle(
+                  padding: MaterialStatePropertyAll(
+                    EdgeInsets.fromLTRB(25, 20, 25, 20),
+                  ),
+                  foregroundColor: MaterialStatePropertyAll(Colors.white),
+                ),
+                onPressed: () {
+                  startQuiz();
+                },
+                label: const Text('Start Quiz'),
+                icon: const Icon(Icons.arrow_right_alt_sharp),
+              ),
             )
           ],
         ),
@@ -165,4 +162,3 @@ class StartScreen2 extends StatelessWidget {
     );
   }
 }
-

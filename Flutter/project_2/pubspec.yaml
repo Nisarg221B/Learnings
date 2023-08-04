@@ -1,4 +1,4 @@
-name: project_2
+name: project2
 description: A challenge in udemy course - hompe page of a quiz
 
 publish_to: 'none'
@@ -13,6 +13,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  google_fonts: ^5.1.0
 
 dev_dependencies:
   flutter_test:
@@ -22,6 +23,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
-assets:
-  - assets/images/quiz-logo.png
+  assets:
+    - assets/images/quiz-logo.png

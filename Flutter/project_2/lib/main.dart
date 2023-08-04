@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:project_2/startscreen.dart';
-
+import 'package:project2/src/Home/quiz.dart';
 
 void main() {
   runApp(
-    const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: StartScreen2(),
-      ),
-    ),
+    const Quiz()
   );
 }
