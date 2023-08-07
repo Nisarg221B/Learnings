@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project_5/widgets/screens/categories.dart';
 
 final theme = ThemeData(
   useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(
       seedColor: const Color.fromARGB(98, 58, 34, 49),
-      brightness: Brightness.light),
+      brightness: Brightness.dark),
   textTheme: GoogleFonts.latoTextTheme(),
 );
 
@@ -19,8 +20,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: theme,
-      home: const Text('Navigation and multi-Screen Apps')//
+      home: const CategoriesScreen(),
     );
   }
 }
