@@ -3,8 +3,10 @@ import 'package:project_5/models/meal.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MealListItem extends StatelessWidget {
-  const MealListItem({super.key, required this.aMeal});
+  const MealListItem(
+      {super.key, required this.aMeal, required this.openItemScreen});
   final Meal aMeal;
+  final Function(BuildContext context, Meal M) openItemScreen;
 
   Widget mealItemTrait({required IconData icon, required String label}) {
     return Row(
@@ -33,7 +35,9 @@ class MealListItem extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       elevation: 10,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          openItemScreen(context,aMeal);
+        },
         child: Stack(
           children: [
             FadeInImage(
@@ -72,9 +76,17 @@ class MealListItem extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        mealItemTrait(icon: Icons.schedule,label: '${aMeal.duration} min'),
-                        mealItemTrait(icon: Icons.work, label: aMeal.complexity.name[0].toUpperCase() + aMeal.complexity.name.substring(1)),
-                        mealItemTrait(icon: Icons.attach_money, label: aMeal.affordability.name[0].toUpperCase() + aMeal.affordability.name.substring(1)),
+                        mealItemTrait(
+                            icon: Icons.schedule,
+                            label: '${aMeal.duration} min'),
+                        mealItemTrait(
+                            icon: Icons.work,
+                            label: aMeal.complexity.name[0].toUpperCase() +
+                                aMeal.complexity.name.substring(1)),
+                        mealItemTrait(
+                            icon: Icons.attach_money,
+                            label: aMeal.affordability.name[0].toUpperCase() +
+                                aMeal.affordability.name.substring(1)),
                       ],
                     )
                   ],

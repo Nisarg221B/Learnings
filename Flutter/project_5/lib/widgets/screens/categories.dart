@@ -9,8 +9,9 @@ class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
 
   void _selectCategory(BuildContext context, Category category) {
-    
-    final List<Meal>filteredMeals = dummyMeals.where((meal) => meal.categories.contains(category.id)).toList();
+    final List<Meal> filteredMeals = dummyMeals
+        .where((meal) => meal.categories.contains(category.id))
+        .toList();
 
     // Navigator.of(context).push(route);
     Navigator.push(
@@ -29,32 +30,27 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('pick your category'),
+    return GridView(
+      padding: const EdgeInsets.all(16),
+      // main axis - top to bottom
+      // cross axis - left to right
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2, // setting number of columns
+        childAspectRatio: 3 / 2,
+        crossAxisSpacing: 20,
+        mainAxisSpacing: 20,
       ),
-      body: GridView(
-        padding: const EdgeInsets.all(16),
-        // main axis - top to bottom
-        // cross axis - left to right
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // setting number of columns
-          childAspectRatio: 3 / 2,
-          crossAxisSpacing: 20,
-          mainAxisSpacing: 20,
-        ),
-        // children: availableCategories.map((category) => CategoryGridItem(category: category)).toList(),
-        // or
-        children: [
-          for (final category in availableCategories)
-            CategoryGridItem(
-              () {
-                _selectCategory(context,category);
-              },
-              category: category,
-            )
-        ],
-      ),
+      // children: availableCategories.map((category) => CategoryGridItem(category: category)).toList(),
+      // or
+      children: [
+        for (final category in availableCategories)
+          CategoryGridItem(
+            () {
+              _selectCategory(context, category);
+            },
+            category: category,
+          )
+      ],
     );
   }
 }
