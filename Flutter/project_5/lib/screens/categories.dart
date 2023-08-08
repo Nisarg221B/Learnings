@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:project_5/widgets/category_grid_item.dart';
 import 'package:project_5/data/dummy_data.dart';
-import 'package:project_5/widgets/screens/meals.dart';
+import 'package:project_5/screens/meals.dart';
 import 'package:project_5/models/category.dart';
 import 'package:project_5/models/meal.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key});
+  const CategoriesScreen({super.key,required this.filterUpdatedAllMeals});
+
+  final List<Meal> filterUpdatedAllMeals;
 
   void _selectCategory(BuildContext context, Category category) {
-    final List<Meal> filteredMeals = dummyMeals
+    final List<Meal> filteredMeals = filterUpdatedAllMeals
         .where((meal) => meal.categories.contains(category.id))
         .toList();
 

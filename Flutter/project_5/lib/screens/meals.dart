@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_5/models/meal.dart';
 import 'package:project_5/widgets/meal_list_item.dart';
-import 'package:project_5/widgets/screens/item_detail.dart';
+import 'package:project_5/screens/item_detail.dart';
 
 class MealsScreen extends StatefulWidget {
   const MealsScreen({super.key, this.title, required this.meals});
