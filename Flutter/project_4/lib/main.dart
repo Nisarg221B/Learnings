@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project4/pagers/page_1.dart';
-import 'package:project4/widget/number_widget.dart';
 
 void main() {
   runApp(
