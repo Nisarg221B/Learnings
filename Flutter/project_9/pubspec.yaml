@@ -1,5 +1,10 @@
+# this file uses firebase sdk , for security measure , firebase sdk setup files are
+# not included in the git repo , install the firebase tools and configure firebase
+# for this project to work
+
 name: project9
-description: Chat app
+description: Chat app 
+
 
 publish_to: 'none'
 
@@ -24,6 +29,8 @@ dependencies:
   path: any
   sqflite: ^2.3.0
   flutter_dotenv: ^5.1.0
+  firebase_core: ^2.15.1
+  firebase_auth: ^4.7.3
 
 dev_dependencies:
   flutter_test:
@@ -34,3 +41,4 @@ flutter:
   uses-material-design: true
   assets:
     - .env
+    - assets/images/chat.png
