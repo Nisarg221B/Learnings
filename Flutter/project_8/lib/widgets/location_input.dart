@@ -8,8 +8,6 @@ import 'package:project_8/models/place.dart';
 import 'package:project_8/screens/map_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-
-
 class LocationInput extends StatefulWidget {
   const LocationInput({super.key, required this.onSelectLocation});
 
@@ -21,15 +19,12 @@ class LocationInput extends StatefulWidget {
   }
 }
 
-
-
 class LocationInputState extends State<LocationInput> {
   PlaceLocation? _pickedLocation;
   var _isGettingLocation = false;
-  var key = dotenv.env['GOOGLE_API_KEY'];
+  late final key = dotenv.env['GOOGLE_API_KEY'];
 
-  String get locationImage{
-
+  String get locationImage {
     if (_pickedLocation == null) {
       return '';
     }

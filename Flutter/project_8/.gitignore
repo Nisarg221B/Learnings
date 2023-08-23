@@ -45,5 +45,5 @@ app.*.map.json
 
 # project secrets
 /android/app/src/main/AndroidManifest.xml
-/lib/.env
 /ios/Runner/AppDelegate.swift
+*.env
