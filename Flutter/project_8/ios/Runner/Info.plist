@@ -2,6 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Pick your favorite place image.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Pick your favorite place image.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Pick your favorite place image.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allow Location access while open</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Allow Location access always</string>
+	<key>io.flutter.embedded_views_preview</key>
+	<string>YES</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
