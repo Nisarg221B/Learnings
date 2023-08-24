@@ -4,6 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project9/widgets/user_image_picker.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 final _firebase = FirebaseAuth.instance;
 
@@ -22,8 +23,10 @@ class _AuthScreenState extends State<AuthScreen> {
 
   final _formkey = GlobalKey<FormState>();
 
-  var _enteredEmail = '';
-  var _enteredPassword = '';
+  String _enteredEmail = '';
+  String _enteredPassword = '';
+  String _enteredUsername = '';
+
   File? _selectedImage;
 
   // login and logout functionality with firebase
@@ -66,7 +69,16 @@ class _AuthScreenState extends State<AuthScreen> {
             .child('${userCredentials.user!.uid}.jpg');
         await storageRef.putFile(_selectedImage!);
         final imageUrl = await storageRef.getDownloadURL();
-        print(imageUrl);
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(userCredentials.user!.uid)
+            .set(
+          {
+            'username': _enteredUsername,
+            'email': _enteredEmail,
+            'Display Image': imageUrl,
+          },
+        );
       }
     } on FirebaseAuthException catch (error) {
       if (error.code == 'email-already-in-use') {
@@ -123,6 +135,30 @@ class _AuthScreenState extends State<AuthScreen> {
                                 _selectedImage = pickedImage;
                               },
                             ),
+                          
+                          // USERNAME
+                          if(!_isLogin)
+                            TextFormField(
+                              decoration: const InputDecoration(
+                                labelText: 'Username',
+                              ),
+                              keyboardType: TextInputType.name,
+                              autocorrect: false,
+                              textCapitalization: TextCapitalization.none,
+                              enableSuggestions: false,
+                              validator: (value) {
+                                if (value == null ||
+                                    value.trim().isEmpty ||
+                                    value.trim().length < 4) {
+                                  return 'Please enter at least 4 characters.';
+                                }
+                                return null;
+                              },
+                              onSaved: (value) {
+                                _enteredUsername = value!.trim();
+                              },
+                            ),
+
                           // EMAIL ADDRESS
                           TextFormField(
                             decoration: const InputDecoration(
@@ -163,8 +199,11 @@ class _AuthScreenState extends State<AuthScreen> {
                           const SizedBox(
                             height: 12,
                           ),
+                          
+                          
                           if (_isAuthenticating)
                             const CircularProgressIndicator(),
+                          
                           // LOGIN AND SIGNUP
                           if (!_isAuthenticating)
                             ElevatedButton(
