@@ -30,7 +30,7 @@ class _NewMessageState extends State<NewMessage> {
     _messageController.clear();
 
     // to close any open keyboard by removing focus from the inputfield
-    FocusScope.of(context).unfocus(); 
+    // FocusScope.of(context).unfocus(); 
 
     // Sending to firebase
 
