@@ -26,6 +26,9 @@ JS ( ES5 , ES6(new version) )
   - callback fncs
   - first class functions
   - params, arguments
+  - this
+  - call apply bind
+  - IIFE
 
 - arrays
   - push pop shift unshift splice
@@ -38,13 +41,13 @@ JS ( ES5 , ES6(new version) )
   - how to delete object prop
 
 
+Topics remaining
+
 - New
-- this
-- call apply bind
 - map filter reduce
-- IIFE
 - HOF
 - Prototype
   - Prototype Inheritance
 - Currying
 - Method Chaining
+- Async javascript 

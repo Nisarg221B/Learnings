@@ -8,8 +8,8 @@ INDEX
 - Function returning function and callback functions
 - Call and Apply methods
 - The Bind Method
-- 
- 
+- IIFE
+
 */
 console.log('\n----------Default Parameters----------\n')
 
@@ -207,3 +207,28 @@ console.log(addVAT(300));
 
 
 
+
+// IIFE
+
+// Immediatly invoked function expression
+
+(function(){
+    console.log('This will never run again');
+    const isPrivate = 23; // this won't be accessable outside this function
+    // thus encapsulation 
+    var isPrivate3 = 23; 
+})();
+
+(()=> console.log('This will also never run again'))();
+
+// we can also create a block instead of declaring a IIFE just to ensure encapsulation
+// thus IIFE are not in much use nowdays
+
+{
+    const isPrivate2 = 23;
+    var notPrivate = 3423;
+}
+
+console.log(notPrivate);
+// console.log(isPrivate2);
+// console.log(isPrivate3);
