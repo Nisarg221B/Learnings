@@ -154,8 +154,11 @@ var xx = [1, 2, 3, 4, 5, 6];
 xx.forEach(function (val) {
     console.log(val);
 });
-xx.forEach((val) => {
+
+// for each takes three arguments , item index arr
+xx.forEach((val,index,arr) => {
     val = val + 2;
+    arr[index] = val;
 });
 console.log(xx);
 
