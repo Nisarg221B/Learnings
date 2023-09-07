@@ -7,7 +7,7 @@ const nisarg = {
     friends: ['Payal','nikhil','nishant'],
     calAge: function(birthyear){
         this.age =  2023 - birthyear; // using this keyword to add properties
-        return this.age;
+        return this.age; // obsidian://open?vault=Documents&file=Technical%20Learning%2FJavaScript%2F5.%20This%20Keyword
     },
     calmybirthyear: function(){
         return 2023 - this.age;

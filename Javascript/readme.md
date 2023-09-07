@@ -38,13 +38,13 @@ JS ( ES5 , ES6(new version) )
   - how to delete object prop
 
 
--New
--this
--call apply bind
--map filter reduce
--IIFE
--HOF
--Prototype
--- Prototype Inheritance
--Currying
--Method Chaining
+- New
+- this
+- call apply bind
+- map filter reduce
+- IIFE
+- HOF
+- Prototype
+  - Prototype Inheritance
+- Currying
+- Method Chaining
