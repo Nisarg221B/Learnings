@@ -27,6 +27,7 @@ JS ( ES5 , ES6(new version) )
   - first class functions
   - params, arguments
   - this
+  - HOF(Higher order functions)
   - call apply bind
   - IIFE
 
@@ -34,20 +35,20 @@ JS ( ES5 , ES6(new version) )
   - push pop shift unshift splice
   - how arrays are made behind the scenes
   - why we can make negative indexes arrays in js
+  - Array Methods
+  - map filter reduce
+  - Method Chaining
 
-- objects
-  - props vs methods
-  - updating object props
-  - how to delete object prop
+- Object Oriented Programming
+  - new keyword 
+  - Construction Functions
+  - Prototype
+  - Prototype Inheritance
+  - Prototype chaining
+  - ES6 Classes
 
 
 Topics remaining
 
-- New
-- map filter reduce
-- HOF
-- Prototype
-  - Prototype Inheritance
 - Currying
-- Method Chaining
 - Async javascript 

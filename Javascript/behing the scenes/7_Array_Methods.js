@@ -15,6 +15,8 @@ INDEX
 - includes, some and every
 - Sorting arrays
 
+obsidian://open?vault=Documents&file=Technical%20Learning%2FJavaScript%2F8.%20Array%20Methods
+
 */
 
 let arr = ["a", "b", "c", "d", "e"];
