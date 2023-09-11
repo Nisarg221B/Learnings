@@ -48,6 +48,9 @@ JS ( ES5 , ES6(new version) )
   - ES6 Classes
 
 
+- Async Javascript 
+
+
 Topics remaining
 
 - Currying
