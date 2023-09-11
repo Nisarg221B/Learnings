@@ -1,28 +1,27 @@
-JS ( ES5 , ES6(new version) )
+### JS (ES5 , ES6 (new version))
 
-- var, const, let
-  - the difference
-  - window object
-  - browser context api
-  - stack
-  - heap memory
-  - execution context
-  - lexical environment
+#### Basics
+  - var, const, let
+    - the difference
+    - window object
+    - browser context api
+    - stack
+    - heap memory
+    - execution context
+    - lexical environment
+  - Hoisting
+  - Types in js
+    - how to copy reference values
+  - Conditionals
+    - if else else-if
+    - truthy vs falsy
+  - Loops
+    - for while
+    - foreach forin forof do-while
 
-- hoisting
 
-- types in js
-  - how to copy reference values
 
-- conditionals
-  - if else else-if
-  - truthy vs falsy
-
-- loops
-  - for while
-  - foreach forin forof do-while
-
-- functions
+#### Functions
   - callback fncs
   - first class functions
   - params, arguments
@@ -30,16 +29,17 @@ JS ( ES5 , ES6(new version) )
   - HOF(Higher order functions)
   - call apply bind
   - IIFE
+  - Arrays
+    - push pop shift unshift splice
+    - how arrays are made behind the scenes
+    - why we can make negative indexes arrays in js
+    - Array Methods
+    - map filter reduce
+    - Method Chaining
 
-- arrays
-  - push pop shift unshift splice
-  - how arrays are made behind the scenes
-  - why we can make negative indexes arrays in js
-  - Array Methods
-  - map filter reduce
-  - Method Chaining
 
-- Object Oriented Programming
+
+#### Object Oriented Programming
   - new keyword 
   - Construction Functions
   - Prototype
@@ -48,10 +48,13 @@ JS ( ES5 , ES6(new version) )
   - ES6 Classes
 
 
-- Async Javascript 
-
-
-Topics remaining
-
-- Currying
-- Async javascript 
+#### Async Javascript 
+  - Async Js basics (promises - then keyword)
+  - Consuming Promises 
+  - Building Promises
+  - Asyn - Await 
+  - Paralled Promises (Promise Combinators)
+    - Promise.all
+    - Promise.allSettled
+    - Promise.race
+    - Promise.any
