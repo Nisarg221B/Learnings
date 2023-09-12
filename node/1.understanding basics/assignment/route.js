@@ -24,7 +24,7 @@ function requestListner(req, res) {
             body.push(chunk);
         });
 
-        req.on('end',()=>{
+        return req.on('end',()=>{
             let usr = Buffer.concat(body).toString().split('=')[1];
             console.log(usr);
             usersList.push(usr);
@@ -33,7 +33,6 @@ function requestListner(req, res) {
             res.setHeader('Method','GET');
             res.end();
         });
-        return;
     }
     if (url === "/users") {
         res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -48,6 +47,12 @@ function requestListner(req, res) {
         res.write('</html>');
         return res.end();
     }
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write('<html>');
+    res.write('<head><title>Page not found</title></head>');
+    res.write('<body><h3>Page not found</h3>');
+    res.write('</body>');
+    res.write('</html>');
 }
 
 module.exports = requestListner;
