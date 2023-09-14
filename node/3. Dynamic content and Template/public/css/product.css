@@ -1,0 +1,73 @@
+
+.product-form{
+  width: 20rem;
+  max-width: 90%;
+  margin: auto;
+}
+
+.product-item {
+  width: 20rem;
+  max-width: 95%;
+}
+
+.product__title {
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.product__price {
+  text-align: center;
+  color: #4d4d4d;
+  margin-bottom: 0.5rem;
+}
+
+.product__description {
+  text-align: center;
+}
+
+.form-control{
+  margin: 1rem 0rem;
+  align-content:space-evenly;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+.form-control label{
+  font-weight: 600;
+  font-size: 15px;
+}
+.form-control input[type="text"]{
+  padding: 20px;
+  font-weight:400;
+  font-size: 20px;
+}
+
+.form-control label,
+.form-control input{
+  display: block;
+  width: 100%;
+  height: 20px;
+}
+
+.form-control input{
+  border: 1px solid;
+  font: inherit;
+  border-radius: 2px;
+}
+
+.btn{
+  font:inherit;
+  border: 1px solid;
+  color: rgb(143, 50, 6);
+  background: white;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 0.5rem 0.5rem;
+}
+
+.btn:hover,.btn:active{
+  background-color: rgba(115, 39, 4, 0.829);
+  color: white;
+}
+  
