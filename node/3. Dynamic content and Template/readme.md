@@ -11,7 +11,7 @@ graph TD;
 ```
 
 - Available Templating Engines
-  - EJS
+  - EJS ( Embedded Javascript Template)
     - eg: `<p><%= name %> </p>`
     - Use normal HTML and plain javascript in your templates
   - PUG (jade)
