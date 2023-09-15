@@ -1,11 +1,11 @@
 const path = require('path');
 const express = require('express');
-const rootDir = require('../util/path');
 
 const router = express.Router();
 const products = [];
 
 router.get('/add-product', (req, res, next) => {
+    // 1. rendering and sending the local variables 
     res.render(
         'add-product',
         {
