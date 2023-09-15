@@ -17,7 +17,6 @@ const app = express();
 //************************* Specifying Template engines *************************
 
 app.set('view engine','pug'); 
-app.set('views','views/pugs'); 
 
 //************************* utility Middlewares *************************
 
@@ -27,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //*********************** Routes ***************************
 
-app.use(adminRoutes);
+app.use('/admin',adminRoutes);
 app.use(shopRoutes);
 app.use(errorController.pageNotFoundErrorPage);
 
