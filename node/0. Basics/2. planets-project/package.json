@@ -1,0 +1,14 @@
+{
+  "name": "kepler",
+  "version": "1.0.0",
+  "description": "kepler input output project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nisarg Patel",
+  "license": "ISC",
+  "dependencies": {
+    "csv-parse": "^5.5.0"
+  }
+}

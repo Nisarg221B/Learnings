@@ -8,14 +8,14 @@
 
 - #### Using Middleware, next() and res()
 
-  - express.js relies heavily on middleware functions - you can easily add them by calling
-    use()
+  - express.js relies heavily on middleware functions - you can easily add them by calling " use() ".
   - Middleware functions handle a request and should call next() to forward the request
     to the next function inline or send a response.
   - <b>see "6. note on .use function" in server.js file</b>
   some interesting middlewares
   - <b>3. parsing request body using bodyParser (see server.js)</b>
 
+<img src="middleware.png" width="128"/>
 
 - #### Working with Requests/Responses and Routing
 

@@ -6,6 +6,7 @@ const rootDir = require('../util/path');
 
 // using Routes from this file to server.js file 
 const router = express.Router();
+// router is also a middleware function 
 
 
 router.get('/add-product',(req,res,next)=>{

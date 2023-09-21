@@ -1,0 +1,11 @@
+- Project structure
+
+- root
+    - client 
+        - package.json - configuration for client
+    - server (MVC)
+        - routes (controllers included in here only)
+        - models
+        - server.js (starter file)
+        - package.json - configuration for server
+    - package.json - configuration for overall project
