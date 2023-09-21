@@ -27,7 +27,7 @@ const result = await promise;
 
 function loadPlanetsData() {
     return new Promise((resolve, reject) => {
-        fs.createReadStream(path.join(__dirname,''))
+        fs.createReadStream(path.join(__dirname,'..','..','data','kepler_data.csv'))
             .pipe(parse({
                 comment: '#',
                 columns: true,
