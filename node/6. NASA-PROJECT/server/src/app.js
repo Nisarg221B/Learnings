@@ -4,7 +4,7 @@ const planetsRouter = require('./routes/planets/planets.router');
 
 const app = express(); // just a fancy listener function
 
-// ******************************** CORS configuration  ******************************************
+// ******************************** CORS configuration  ***********************************
 
 var whitelist = ['http://localhost:3000', 'http://localhost:4000'];
 
@@ -22,7 +22,7 @@ var corsOptions = {
 
 // ********************************** middlewares ****************************************
 
-app.use(cors(corsOptions));
+app.use(cors(corsOptions)); // 
 app.use(express.json()); // body parsing
 app.use(planetsRouter); // planet routes
 
