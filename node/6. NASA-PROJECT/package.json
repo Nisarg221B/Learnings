@@ -1,7 +1,7 @@
 {
   "name": "nasa-project",
   "version": "1.0.0",
-  "description": "- Project structure",
+  "description": "NASA PROJECT",
   "main": "index.js",
   "scripts": {
     "install-server": "npm install --prefix server",
@@ -12,7 +12,9 @@
     "client": "npm start --prefix client",
     "watch": "npm run client && npm run server",
 
-    "test": "npm run test --prefix server && npm run test --prefix client"
+    "test": "npm run test --prefix server && npm run test --prefix client",
+    
+    "deploy": "npm run build --prefix client && npm start --prefix server"
   },
   "keywords": [],
   "author": "",
