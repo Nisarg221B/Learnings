@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
 app.get('/timer', (req, res) => {
     delay(9000);// stimulating 9sec of event loop block
     res.send(`Ding ding din!! ${process.pid}`);
+    // res.send(`Beep beep buuuum!! ${process.pid}`);
 })
 
 console.log(`Master has been started... ${process.pid}`);

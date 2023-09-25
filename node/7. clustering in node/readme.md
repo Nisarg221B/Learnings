@@ -2,8 +2,8 @@
 
 you want to keep your respones time below 100-150 ms
 
-- https://www.nngroup.com/articles/response-times-3-important-limits/
-- https://speedcurve.com/blog/web-performance-monitoring-user-engagement/
+- [response time 3 important limits](https://www.nngroup.com/articles/response-times-3-important-limits/)
+- [web performace monitoring - User engagement ](https://speedcurve.com/blog/web-performance-monitoring-user-engagement/)
 
 ### balancing load
 
@@ -39,12 +39,26 @@ fork() - The worker processes are spawned using the child_process.fork() method,
 - The second approach should, in theory, give the best performance. In practice however, distribution tends to be very unbalanced due to operating system scheduler vagaries. Loads have been observed where over 70% of all connections ended up in just two processes, out of a total of eight.
 
 ### PM2
+[pm2 docs](https://pm2.keymetrics.io/docs/usage/quick-start/)
 
 pm2 has clustering build-in , so we don't need to fork the master process in the code , pm2 has commands to do the same and manage those processes.
 
 - pm2 start server.js
 - pm2 start server.js -i (instance)
+- pm2 start server.js -i 2         ( starts two workers )
+- pm2 start server.js -i max       ( starts maximum amount of workers possible )
 - pm2 stop <name>
-- pm2 stop <pid>
+- pm2 stop <pid> ( temporariliy brings the process down)
+- pm2 start <pid> ( restart the process )
 - pm2 list
 - pm2 show <pid>
+
+- pm2 logs
+- pm2 logs --lines 200 
+- pm2 start server.js -l logs.text ( sending logs to a file and also supports log rotations)
+
+- pm2 monit
+
+- pm2 restart server ( closes all the process and restart them )
+- pm2 reload server (close process one by one making sure that atleast one instant is live ) - zero downtime restart
+    - This is the best way to update serversthat are already live and serving users, particularly with applications that are time sensetive. 
