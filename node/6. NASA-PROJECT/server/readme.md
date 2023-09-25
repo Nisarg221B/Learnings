@@ -56,3 +56,19 @@ var accessLogStream = rfs.createStream('access.log', {
  
 // setup the logger
 app.use(morgan('combined', { stream: accessLogStream }))
+
+
+
+- ### JEST - Testing in Node
+    - Test Runner 
+        - Finds all of the tests in your project , runs through them and gives you the result. 
+    - Test Fixtures
+        - test fixtures , fixtures is just how your tests are set up and organized by module and by individual test where each fixture can run in its own environment with its own sets of variables and data.
+    - Assertions
+        - allows us to run assertions.
+    - Mocking 
+        - 
+In early days of node we had to get seperate package for each of this functionality above.
+but now we have "jest" for javascript testing. 
+
+- supertest  ( for easy http assertions)
