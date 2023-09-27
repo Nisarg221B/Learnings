@@ -38,7 +38,7 @@ fork() - The worker processes are spawned using the child_process.fork() method,
   - The second approach is where the primary process creates the listen socket and sends it to interested workers. The workers then accept incoming connections directly.
 - The second approach should, in theory, give the best performance. In practice however, distribution tends to be very unbalanced due to operating system scheduler vagaries. Loads have been observed where over 70% of all connections ended up in just two processes, out of a total of eight.
 
-### PM2
+#### PM2
 [pm2 docs](https://pm2.keymetrics.io/docs/usage/quick-start/)
 
 pm2 has clustering build-in , so we don't need to fork the master process in the code , pm2 has commands to do the same and manage those processes.
@@ -62,3 +62,13 @@ pm2 has clustering build-in , so we don't need to fork the master process in the
 - pm2 restart server ( closes all the process and restart them )
 - pm2 reload server (close process one by one making sure that atleast one instant is live ) - zero downtime restart
     - This is the best way to update serversthat are already live and serving users, particularly with applications that are time sensetive. 
+
+### Worker threads
+
+[worker Threads](https://nodejs.org/dist/latest-v18.x/docs/api/worker_threads.html)
+
+The node:worker_threads module enables the use of threads that execute JavaScript in parallel through V8 engines isolates. its much like threads in normal programming but provided via a engine. 
+
+- Workers (threads) are useful for performing CPU-intensive (such as sorting) JavaScript operations. 
+- They do not help much with I/O-intensive work. The Node.js built-in asynchronous I/O operations are more efficient than Workers can be.
+
