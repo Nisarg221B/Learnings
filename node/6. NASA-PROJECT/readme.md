@@ -1,13 +1,26 @@
 - ### Project structure
 
+
 - root
     - client 
+        - public
+        - src ...  
         - package.json - configuration for client
+
     - server (MVC)
-        - routes (controllers included in here only)
-        - models
-        - server.js (starter file)
+        - data
+        - __test__ (tests file)
+        - public
+        - src
+            - routes
+                - controllers
+                - router
+                - test
+            - models 
+            - app.js
+            - server.js (starter file)
         - package.json - configuration for server
+
     - package.json - configuration for overall project
 
 - #### How do we run our project in production ? 
