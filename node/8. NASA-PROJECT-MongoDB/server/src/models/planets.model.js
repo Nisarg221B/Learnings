@@ -10,19 +10,6 @@ function isHabitablePlanet(planet) {
         && planet['koi_prad'] < 1.6;
 }
 
-/*
--------------------------------------------------
-const promise = new Promise((resolve,reject) => {
-    resolve(42); // result =42
-});
--------------------------------------------------
-promise.then((result) => {
-
-});
-or
-const result = await promise;
-*/
-
 function loadPlanetsData() {
     return new Promise((resolve, reject) => {
         fs.createReadStream(path.join(__dirname, '..', '..', 'data', 'kepler_data.csv'))
@@ -67,7 +54,10 @@ async function savePlanet(planet) {
 }
 
 async function getAllPlanets() {
-    return await planets.find({});
+    return await planets.find({},{
+        '__v':0, // set a field zero to exclude it from the projection
+        '_id':0,
+    });
 }
 
 module.exports = {
