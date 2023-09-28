@@ -20,7 +20,6 @@ async function startServer(){
         console.log('MongoDB connection ready!');
     })
     .on('error', (err)=>{
-        console.log('here');
         console.log(err.message);
     });
     
