@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+require('dotenv').config(); // configuring env
 
 const MONGO_PASS = process.env.MONGO_PASS
 const databaseName = 'nasa'
@@ -13,9 +13,14 @@ mongoose.connection.on('open',()=>{ // mongoose.connection is an event emmiter
 });
 
 async function mongoConnect(){
-    mongoose.connect(MONGO_URL); // connecting mongo db atlas 
+    await mongoose.connect(MONGO_URL); // connecting mongo db atlas 
+}
+
+async function mongoDisconnect(){
+    await mongoose.disconnect();
 }
 
 module.exports = {
     mongoConnect,
+    mongoDisconnect,
 }
