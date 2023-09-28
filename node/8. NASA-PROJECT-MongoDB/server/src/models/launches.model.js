@@ -30,7 +30,10 @@ async function saveLaunch(launch) {
         if (!planet) { // for referential integrity
             throw new Error('No matching planet found');
         }
-        await launchesMongo.updateOne({
+        // findOne also returns a new property named "$setonInsert" if the 
+        // object is not already present
+        // thus use findOneAndUpdate which only returns the properties we set in our update 
+        await launchesMongo.findOneAndUpdate({
             flightNumber: launch.flightNumber,
         }, launch, {
             upsert: true,
