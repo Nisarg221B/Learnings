@@ -43,8 +43,10 @@ async function saveLaunch(launch) {
     }
 }
 
-function existsLaunchWithId(launchId) {
-    return launches.has(launchId);
+async function existsLaunchWithId(launchId) {
+    return await launchesMongo.findOne({
+        flightNumber: launchId,
+    });
 }
 
 async function scheduleNewLaunch(launch) {
@@ -63,11 +65,15 @@ async function scheduleNewLaunch(launch) {
     }
 }
 
-function abortLaunchById(launchId) {
-    const aborted = launches.get(launchId);
-    aborted.upcoming = false;
-    aborted.success = false;
-    return aborted;
+async function abortLaunchById(launchId) {
+    const aborted =  await launchesMongo.updateOne({
+        flightNumber:launchId,
+    },{
+        upcoming:false,
+        success:false,
+    }); // no need to pass upsert as we know that document do exist 
+    console.log(aborted);
+    return (aborted.acknowledged === true && aborted.modifiedCount === 1);
 }
 
 module.exports = {
