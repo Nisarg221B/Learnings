@@ -7,17 +7,17 @@ const DEFAULT_FLIGHT_NUMBER = 100;
 const SPACEX_API_URL = "https://api.spacexdata.com/v4/launches/query";
 
 const launch = {
-    flightNumber : 100, // flight_number
-    mission : 'Kepler Exploration X', // name
-    rocket : "Explorer IS1", // rocket.name
-    launchDate : new Date('December 23, 2030'), // date_local
-    target : "kepler-442 b", // not applicable 
-    customers : ['ZTM','NASA'], // payload.customers for each payload 
-    upcoming : true, // upcomming
-    success : true, // success
+    flightNumber: 100, // flight_number
+    mission: 'Kepler Exploration X', // name
+    rocket: "Explorer IS1", // rocket.name
+    launchDate: new Date('December 23, 2030'), // date_local
+    target: "kepler-442 b", // not applicable 
+    customers: ['ZTM', 'NASA'], // payload.customers for each payload 
+    upcoming: true, // upcomming
+    success: true, // success
 }
 
-async function getLatestFlightNumber() { 
+async function getLatestFlightNumber() {
     const latestLaunch = await launchesMongo
         .findOne()
         .sort('-flightNumber'); // sorting in descending order -
@@ -57,10 +57,10 @@ async function saveLaunch(launch) {
     }
 }
 
-async function loadLaunchData(){
+async function populateLunches() {
     console.log("downloading launch data from spaceX api");
-    const response = await axios.post(SPACEX_API_URL,{
-        "query":{},
+    const response = await axios.post(SPACEX_API_URL, {
+        "query": {},
         "options": {
             "populate": [
                 {
@@ -68,40 +68,56 @@ async function loadLaunchData(){
                     "select": "name"
                 },
                 {
-                    "path" : 'payloads',
-                    "select" : {
-                        "customers" : 1
+                    "path": 'payloads',
+                    "select": {
+                        "customers": 1
                     }
                 }
-            ] 
+            ]
         }
     });
     const launchDocs = response.data.docs;
-    for(const launchDoc of launchDocs){
+    for (const launchDoc of launchDocs) {
         const payloads = launchDoc['payloads'];
-        const customers = payloads.flatMap((payload)=>{
+        const customers = payloads.flatMap((payload) => {
             return payload['customers'];
         });
 
         const launch = {
-            flightNumber : launchDoc.flight_number,
-            mission : launchDoc['name'],
-            rocket : launchDoc['rocket']['name'],
-            launchDate : launchDoc['date_local'],
-            upcoming : launchDoc['upcoming'],
-            success : launchDoc['success'],
+            flightNumber: launchDoc.flight_number,
+            mission: launchDoc['name'],
+            rocket: launchDoc['rocket']['name'],
+            launchDate: launchDoc['date_local'],
+            upcoming: launchDoc['upcoming'],
+            success: launchDoc['success'],
             customers,
         };
         console.log(`${launch.flightNumber} , ${launch.mission}`);
+        // TODO : populate launches collection...
     }
 }
 
-async function findLaunch(filter){
-    
+async function loadLaunchData() {
+    const firstLaunch = await findLaunch({
+        flightNumber: 1,
+        rocket: 'Falcon 1',
+        mission: 'FalconSat',
+    });
+    if (firstLaunch) {
+        console.log('Launch data already loaded!');
+    } else {
+        populateLunches();
+    }
+
+}
+
+async function findLaunch(filter) {
+    return await launchesMongo.findOne(filter);
+
 }
 
 async function existsLaunchWithId(launchId) {
-    return await launchesMongo.findOne({
+    return await findLaunch({
         flightNumber: launchId,
     });
 }
@@ -123,11 +139,11 @@ async function scheduleNewLaunch(launch) {
 }
 
 async function abortLaunchById(launchId) {
-    const aborted =  await launchesMongo.updateOne({
-        flightNumber:launchId,
-    },{
-        upcoming:false,
-        success:false,
+    const aborted = await launchesMongo.updateOne({
+        flightNumber: launchId,
+    }, {
+        upcoming: false,
+        success: false,
     }); // no need to pass upsert as we know that document do exist 
     console.log(aborted);
     return (aborted.acknowledged === true && aborted.modifiedCount === 1);
