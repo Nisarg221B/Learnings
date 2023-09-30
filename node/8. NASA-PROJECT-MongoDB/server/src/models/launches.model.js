@@ -1,9 +1,23 @@
+const axios = require('axios');
+
 const launchesMongo = require('./launches.mongo');
 const planets = require('./planets.mongo'); // for maintaining refrential integrity
 
 const DEFAULT_FLIGHT_NUMBER = 100;
+const SPACEX_API_URL = "https://api.spacexdata.com/v4/launches/query";
 
-async function getLatestFlightNumber() {
+const launch = {
+    flightNumber : 100, // flight_number
+    mission : 'Kepler Exploration X', // name
+    rocket : "Explorer IS1", // rocket.name
+    launchDate : new Date('December 23, 2030'), // date_local
+    target : "kepler-442 b", // not applicable 
+    customers : ['ZTM','NASA'], // payload.customers for each payload 
+    upcoming : true, // upcomming
+    success : true, // success
+}
+
+async function getLatestFlightNumber() { 
     const latestLaunch = await launchesMongo
         .findOne()
         .sort('-flightNumber'); // sorting in descending order -
@@ -43,6 +57,49 @@ async function saveLaunch(launch) {
     }
 }
 
+async function loadLaunchData(){
+    console.log("downloading launch data from spaceX api");
+    const response = await axios.post(SPACEX_API_URL,{
+        "query":{},
+        "options": {
+            "populate": [
+                {
+                    "path": "rocket",
+                    "select": "name"
+                },
+                {
+                    "path" : 'payloads',
+                    "select" : {
+                        "customers" : 1
+                    }
+                }
+            ] 
+        }
+    });
+    const launchDocs = response.data.docs;
+    for(const launchDoc of launchDocs){
+        const payloads = launchDoc['payloads'];
+        const customers = payloads.flatMap((payload)=>{
+            return payload['customers'];
+        });
+
+        const launch = {
+            flightNumber : launchDoc.flight_number,
+            mission : launchDoc['name'],
+            rocket : launchDoc['rocket']['name'],
+            launchDate : launchDoc['date_local'],
+            upcoming : launchDoc['upcoming'],
+            success : launchDoc['success'],
+            customers,
+        };
+        console.log(`${launch.flightNumber} , ${launch.mission}`);
+    }
+}
+
+async function findLaunch(filter){
+    
+}
+
 async function existsLaunchWithId(launchId) {
     return await launchesMongo.findOne({
         flightNumber: launchId,
@@ -78,6 +135,7 @@ async function abortLaunchById(launchId) {
 
 module.exports = {
     getAllLaunches,
+    loadLaunchData,
     existsLaunchWithId,
     scheduleNewLaunch,
     abortLaunchById,
