@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-require('dotenv').config(); // configuring env
 
 const MONGO_PASS = process.env.MONGO_PASS
 const databaseName = 'nasa'

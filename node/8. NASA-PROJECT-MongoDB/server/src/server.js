@@ -1,5 +1,8 @@
 const http = require('http');
 
+// keep the below line on top so that .env variables are accessable to all modules imported below
+require('dotenv').config(); // configuring env
+
 const { mongoConnect } = require('./services/mongo');
 const app = require('./app'); // seperating the express code 
 const { loadPlanetsData } = require('./models/planets.model');
