@@ -38,12 +38,6 @@ async function getAllLaunches() {
 
 async function saveLaunch(launch) {
     try {
-        const planet = await planets.findOne({ // for referential integrity
-            keplerName: launch.target,
-        });
-        if (!planet) { // for referential integrity
-            throw new Error('No matching planet found');
-        }
         // findOne also returns a new property named "$setonInsert" if the 
         // object is not already present
         // thus use findOneAndUpdate which only returns the properties we set in our update 
@@ -62,13 +56,14 @@ async function populateLunches() {
     const response = await axios.post(SPACEX_API_URL, {
         "query": {},
         "options": {
+            "pagination": false,
             "populate": [
                 {
                     "path": "rocket",
                     "select": "name"
                 },
                 {
-                    "path": 'payloads',
+                    "path": "payloads",
                     "select": {
                         "customers": 1
                     }
@@ -76,6 +71,9 @@ async function populateLunches() {
             ]
         }
     });
+    if (response.status !== 200) {
+        throw new Error('Problem downloading launch data');
+    }
     const launchDocs = response.data.docs;
     for (const launchDoc of launchDocs) {
         const payloads = launchDoc['payloads'];
@@ -92,12 +90,13 @@ async function populateLunches() {
             success: launchDoc['success'],
             customers,
         };
-        console.log(`${launch.flightNumber} , ${launch.mission}`);
-        // TODO : populate launches collection...
+        // console.log(`${launch.flightNumber} , ${launch.mission}`);
+        await saveLaunch(launch);
     }
 }
 
 async function loadLaunchData() {
+
     const firstLaunch = await findLaunch({
         flightNumber: 1,
         rocket: 'Falcon 1',
@@ -124,6 +123,14 @@ async function existsLaunchWithId(launchId) {
 
 async function scheduleNewLaunch(launch) {
     try {
+        const planet = await planets.findOne({ // for referential integrity
+            keplerName: launch.target,
+        });
+
+        if (!planet) { // for referential integrity
+            throw new Error('No matching planet found');
+        }
+
         const newFlightNumber = await getLatestFlightNumber() + 1;
 
         const newLaunch = Object.assign(launch, {

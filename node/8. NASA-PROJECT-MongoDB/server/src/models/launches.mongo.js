@@ -23,7 +23,6 @@ const launchesSchema = mongoose.Schema({
     // },
     target:{
         type: String,
-        required:true,
     },
     customers:[ String ], // Array of string 
     upcoming: {
