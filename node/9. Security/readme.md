@@ -6,7 +6,7 @@ INDEX
     - Certificate Authority(CA)
     - Self-signed Certificate 
 
-2. HTTP Security Headers
+2. HTTP Security Headers and related security threats/attacks
     - secure Express apps by setting HTTP response headers.
     - CORS and CORP ( cross-origin )
     - COEP and COOP ( cross-origin isolated)
@@ -24,5 +24,5 @@ INDEX
     - JWT tokens
     - OAuth
 
-    
+
 
