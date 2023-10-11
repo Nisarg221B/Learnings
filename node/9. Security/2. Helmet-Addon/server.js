@@ -9,7 +9,7 @@ const PORT = 3000;
 
 const app = express();
 
-//app.use(helmet()); // sets all the default headers
+app.use(helmet()); // sets all the default headers
 
 app.get('/secret', (req, res) => {
     return res.send('Your personal secret value is 42!');

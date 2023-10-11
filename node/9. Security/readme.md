@@ -24,5 +24,6 @@ INDEX
     - JWT tokens
     - OAuth
 
-
-
+4. Sessions and cookies 
+    - server-side session cookie - express-session
+    - client-side session cookie - cookie-session
