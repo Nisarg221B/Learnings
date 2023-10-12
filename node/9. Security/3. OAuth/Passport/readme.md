@@ -87,7 +87,7 @@ passport.use(
 
 this both strategies are registere inside the passport.\_strategies object as "name" : strategy
 
-```json
+```js
     passport._strategies={
         "google" = {...},
         "local"= {...},
@@ -262,3 +262,9 @@ app.delete("/logout", (req,res) => {
 - Note that when the req.logOut() function is called, it clears both the “req.session.passport” and the “req.user” i.e.
     - "req.session.passport" -------> {}
     - "req.user" ------->  undefined
+
+
+### Reference
+- https://medium.com/@prashantramnyc/node-js-with-passport-authentication-simplified-76ca65ee91e5
+- https://stackoverflow.com/questions/27637609/understanding-passport-serialize-deserialize
+- https://www.passportjs.org/concepts/authentication/middleware/
