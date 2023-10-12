@@ -18,12 +18,14 @@ INDEX
         - MIME type sniffing
     - X DNS prefetch
     - X powered by
+    
+    - Using Helmet (Middleware)
 
 3. Server authorization and authentication
+    - Sessions and cookies 
+        - server-side session cookie - express-session
+        - client-side session cookie - cookie-session
     - API Keys
     - JWT tokens
     - OAuth
-
-4. Sessions and cookies 
-    - server-side session cookie - express-session
-    - client-side session cookie - cookie-session
+        - Using Passport (Middleware)

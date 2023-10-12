@@ -19,20 +19,24 @@ Other important terms:
 
 The usual OAuth 2.0 authorization code flow looks like this:
 
-- The client requests authorization from the resource owner (usually the user).
-- If the owner gives authorization, the client passes the authorization grant to the authorization server (in this case Okta).
-- If the grant is valid, the authorization server returns an access token, possibly alongside a refresh and/or ID token.
-- The client now uses that access token to access the resource server.
-[Okta OAuth flow](https://developer.okta.com/docs/concepts/oauth-openid/#what-kind-of-client-are-you-building)
+1. User selects Login within application.
+2. Auth0's SDK redirects user to Auth0 Authorization Server (/authorize endpoint).
+3. Auth0 Authorization Server redirects user to login and authorization prompt.
+4. User authenticates using one of the configured login options, and may see a consent prompt listing the permissions Auth0 will give to the application.
+5. Auth0 Authorization Server redirects user back to application with single-use authorization code.
+6. Auth0's SDK sends authorization code, application's client ID, and application's credentials, such as client secret or Private Key JWT, to Auth0 Authorization Server (/oauth/token endpoint).
+7. Auth0 Authorization Server verifies authorization code, application's client ID, and application's credentials.
+8. Auth0 Authorization Server responds with an ID token and access token (and optionally, a refresh token).
+9. Application can use the access token to call an API to access information about the user.
+10. API responds with requested data.
 
-### Detailed Authorization code with PKCE Flow
+[OAuth flow](https://developer.okta.com/docs/concepts/oauth-openid/#what-kind-of-client-are-you-building)
 
-<img src="../assets/images/image.png" width=600>
+### Oauth2 flow
 
-
+<img src="../assets/images/outh2flow.png" width=600>
 
 ### References
 
 - [ Redirect vs. Embedded authentication](https://developer.okta.com/docs/concepts/redirect-vs-embedded/)
 - [ Official OAuth doc](https://datatracker.ietf.org/doc/html/rfc6749)
-
