@@ -14,7 +14,7 @@ authRouter.use(passport.session());
 // using passport.use in passport.config.js file
 // we pass the scope in options to retrive the items mentioned in the scope from google
 authRouter.get('/auth/google', passport.authenticate('google', {
-    scope: ['email', 'profile'],
+    scope: ['email'],
 }));
 
 // once we get the callback from the google after the authentication and access grant is finished
@@ -23,18 +23,18 @@ authRouter.get('/auth/google/callback',
     passport.authenticate('google', { // middleware 
         failureRedirect: '/auth/failure',
         successRedirect: '/',
-        session: true
+        session: false,
     }),
+    (req, res) => {
+        console.log('Google called us Back!');
+    }
 );
 
-authRouter.get('/auth/google/callback', (req, res) => {
-    console.log('Google called us Back!');
-});
 
 authRouter.get('/auth/failure', (req, res) => {
     return res.send('Failed to log in!');
 })
 
-authRouter.get('auth/logout', (req, res) => { });
+authRouter.get('/auth/logout', (req, res) => { });
 
 module.exports = authRouter;

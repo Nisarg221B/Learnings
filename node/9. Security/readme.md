@@ -23,8 +23,10 @@ INDEX
 
 3. Server authorization and authentication
     - Sessions and cookies 
-        - server-side session cookie - express-session
-        - client-side session cookie - cookie-session
+        - Cookie
+        - Session
+            - server-side session cookie - express-session (Middleware)
+            - client-side session cookie - cookie-session (Middleware)
     - API Keys
     - JWT tokens
     - OAuth

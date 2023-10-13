@@ -15,12 +15,7 @@ const config = {
 const app = express();
 
 app.use(helmet());
-app.use(morgan('dev'))
-
-app.use((req, res, next) => {
-    console.log(req.session);
-    next();
-});
+app.use(morgan('dev'));
 
 // registers a session stragety 
 app.use(cookieSession({
@@ -30,23 +25,12 @@ app.use(cookieSession({
     keys: [config.COOKIE_KEY_1, config.COOKIE_KEY_2],
 }));
 
-app.use((req, res, next) => {
-    console.log(req.session);
-    next();
-});
-
-app.use(express.static(path.join(__dirname, '..', 'public')));
-
 app.use(authRouter);
 app.use(secretRouter);
 
-app.use((req, res, next) => {
-    console.log(req.session);
-    next();
-});
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, '..' , 'public', 'index.html'));
 });
 
 module.exports = app;
