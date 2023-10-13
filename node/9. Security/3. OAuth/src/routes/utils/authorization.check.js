@@ -1,5 +1,7 @@
-function checkLoogedIn(req, res, next) {
-    const isLoggedIn = true; // toDO
+function checkLoggedIn(req, res, next) {
+    console.log("user is : " , req.user, " this user is varified thus allowed furthur");
+    // here the req.user will be the id we obtained after deserializing
+    const isLoggedIn = req.isAuthenticated() && req.user;
     if (!isLoggedIn) {
         return res.status(401).json({
             error: 'You must log in!',
@@ -7,4 +9,4 @@ function checkLoogedIn(req, res, next) {
     }
     next();
 }
-module.exports.checkLoogedIn = checkLoogedIn;
+module.exports.checkLoggedIn = checkLoggedIn;

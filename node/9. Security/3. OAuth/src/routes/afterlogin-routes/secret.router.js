@@ -1,8 +1,10 @@
-const { checkLoogedIn } = require('../utils/authorization.check');
+const { checkLoggedIn } = require('../utils/authorization.check');
 
 const secretRouter = require('express').Router();
 
-secretRouter.get('/secret', checkLoogedIn, (req, res) => {
+secretRouter.use(checkLoggedIn);
+
+secretRouter.get('/', (req, res) => {
     return res.send('Your personal secret value is 42!');
 });
 

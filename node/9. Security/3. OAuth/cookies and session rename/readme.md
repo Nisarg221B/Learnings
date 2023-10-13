@@ -5,7 +5,7 @@ with the request.
 
 - cookies can be path specific , implies that "only send certain cookies when commmunicating with certain endpoint at the server"
 - cookies also haave expiration date set by server and size limit imposed by browser
-- cookies can be made httpOnly which will make that cookie only accessible via http but are not accesible from javascript code, which means the server has more control over the value in that cookie. this is to prevent certain security issue like cross-site scripting attack, where a hacker manages to load some javascript into your browser thats executing on a site you trust and can then execute that code with all of your permissions and acces to all your data for that site. there this flag is important where the cookie might contain sensitive value.
+- cookies can be made httpOnly which will make that cookie only accessible via https and are not accesible from javascript code, which means the server has more control over the value in that cookie. this is to prevent certain security issue like cross-site scripting attack, where a hacker manages to load some javascript into your browser thats executing on a site you trust and can then execute that code with all of your permissions and acces to all your data for that site. there this flag is important where the cookie might contain sensitive value.
 - cookie can be set as secure which when done the browser will only send that cookie over https.
 
 - we can also do authentication with cookie 
@@ -36,18 +36,22 @@ how do we store session data ? Two ways
 ### cookie-session
 
 - its a client-side cookie storing module
+    - cookie-session does not require any database/resources on the server side, though the total session data cannot exceed the browser's max cookie size.
+    - cookie-session can simplify certain load-balanced scenarios.
+    - it can be used to store a "light" session and include an identifier to lookup a database-backed secondary store to reduce database lookups
+
 - when imported it returns a function with signature - cookieSession(Options)
 - supported options
     - name (defaults to "session").
     - keys -> list of keys use to sign and varify cookie value. always sign with keys[0] while others are valid for varification.
     - secret -> a string which will be used as a single key if key is not provided.
     (Other cookie options)
-    - overwrite - true(default)
-    - httpOnly - true(default)
-    - signed - true(default)
+    - overwrite - true(default) - wheather to overwrite previously set cookies of the same name
+    - httpOnly - true(default) - only sends cookie over https and not made availabe to client javascript
+    - secure -> boolean (only sends cookie over https)
+    - signed - true(default) - a boolean indicating wheather the cookie is to signed
     - maxAge (in secs)
     - expires (Date Object)
-    - secure -> boolean (only sends cookie over https)
 
 - when the cookieSession(Options) is called it returns a express/connect supported middleware `cookieSession(res,req,next)`.
 

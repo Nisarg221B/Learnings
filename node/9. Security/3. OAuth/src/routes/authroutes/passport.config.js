@@ -1,11 +1,9 @@
-const passport = require('passport');
+const { passport , sessionRouter } = require('./session.config');
 const { Strategy } = require('passport-google-oauth20');
 
 const config = {
     CLIENT_ID: process.env.client_id,
     CLIENT_SECRET: process.env.client_secret,
-    COOKIE_KEY_1: process.env.COOKIE_KEY_1,
-    COOKIE_KEY_2: process.env.COOKIE_KEY_2,
 };
 
 const AUTH_OPTIONS = {
@@ -15,7 +13,9 @@ const AUTH_OPTIONS = {
 };
 
 function varifyCallback(accessToken, refreshToken, profile, done) {
-    console.log('Google Profile', profile);
+    console.log('\ninside varifyCallback')
+    console.log('Google Profile recieved in exchange of accesstoken : ', profile);
+    console.log('calling done(null,profile) and passing the profile to get serialized\n');
     // if the accesstoke or refreshtoken are valid we call done with no error and successful user profile retrivel
     done(null, profile);
 };
@@ -27,16 +27,7 @@ passport.use(
     )
 );
 
-// Save the session to cookie
-passport.serializeUser((user, done) => {
-    done(null, user);
-});
-
-// read the session from the cookie
-passport.deserializeUser((obj, done) => {
-    done(null, obj);
-});
-
 // console.log(passport);
 
-module.exports = passport;
+module.exports.passport = passport;
+module.exports.sessionRouter = sessionRouter;
