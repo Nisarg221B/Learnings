@@ -24,6 +24,8 @@ authRouter.get('/auth/google/login',passport.authenticate('google', {
 
 // once we get the callback from the google after the authentication and access grant is finished
 // we get either a failure or a success based on which we get redirected
+// passport.authenticate middleware also attaches some useful functions to the req 
+// such as req.login , req.logout , req.isAuthenticated
 authRouter.get('/auth/google/callback',
     passport.authenticate('google', { // middleware 
         failureRedirect: '/auth/failure',
@@ -40,6 +42,9 @@ authRouter.get('/auth/failure', (req, res) => {
     return res.send('Failed to log in!');
 })
 
-authRouter.get('/auth/logout', (req, res) => { });
+authRouter.get('/auth/logout', (req, res) => {
+    req.logout(); // clears logged-in user session and removes req.user property
+    return res.redirect('/');
+ });
 
 module.exports = authRouter;

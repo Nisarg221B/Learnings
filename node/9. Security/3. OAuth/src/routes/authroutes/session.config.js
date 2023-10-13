@@ -16,7 +16,9 @@ const config = {
 // varify function then this function is called.
 passport.serializeUser((user, done) => {
     console.log('\ninside serializeUser funciton');
-    console.log('here after user is varified by varify function we passed in google-strategy\n');
+    console.log('here after user is varified by varify function we passed in google-strategy');
+    console.log('now we call done(null,profile) to save the profile to the cookie-session on browser');
+    console.log('eg: cookie : {"passport":{"user":"349540259402593024434"}}\n');
     done(null, user.id);
 });
 
@@ -29,7 +31,7 @@ passport.deserializeUser((obj, done) => {
     })
     */
     console.log("\ninside deserializeUser function");
-    console.log("first we deserialize the user from requesting comming from client");
+    console.log("first we deserialize the user from req comming from clients browser or device");
     console.log("and we populated req.user with that obj(which in this case is just an id)");
     console.log("id : ",obj,"\n");
     done(null, obj);
