@@ -1,4 +1,4 @@
-INDEX
+### INDEX
 
 1. SSL 
     - SSL and SSL Pinning
@@ -31,3 +31,12 @@ INDEX
     - JWT tokens
     - OAuth
         - Using Passport (Middleware)
+
+
+### Further readings 
+
+- [OWASP](https://cheatsheetseries.owasp.org/index.html)
+    - The OWASP Cheat Sheet Series was created to provide a concise collection of high value information on specific application security topics
+- [NodeJS Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Nodejs_Security_Cheat_Sheet.html)
+    -  This cheat sheet lists actions developers can take to develop secure Node.js applications.
+- [role based access control](https://www.okta.com/identity-101/what-is-role-based-access-control-rbac/)

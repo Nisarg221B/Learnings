@@ -1,0 +1,5 @@
+- CI (Continuour Integration)
+    - its a software developer best practice. with CI we would continuously take any new code that we've written on our mmachines and we would integrate that code into the main code that's been shared with everyone to make sure that our changes work ( for everyone on the team ). 
+    - if we are using git to share our code with everone else, maybe on a service like github, what this would mean is merging our code continuously into the main branch and making sure 
+- Development Process
+- Quality Process

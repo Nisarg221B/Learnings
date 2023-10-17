@@ -73,3 +73,7 @@ req = {
 }
 
 ```
+
+### Referances
+- [Use this to decode the stored cookies](https://www.base64decode.org/)
+
