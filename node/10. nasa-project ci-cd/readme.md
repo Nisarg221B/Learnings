@@ -26,7 +26,6 @@
 
     - package.json - configuration for overall project
 
-
 - #### Architecture
     <img src="./Architecture.svg"/>
 
