@@ -1,0 +1,25 @@
+name: NASA Project CI
+on: # on property states actions on which this file should run
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# jobs states the actions which should be executed when "on" is triggered
+# jobs runs the listed properties parallaly 
+# to run the properties in sequece use the "need" keyword to state the precedance
+jobs: 
+  build: 
+    runs-on: ubuntu-latest # to be run on which machine it could be macos-latest also
+    steps: # defines steps to run when build is executed
+      - uses: actions/checkout@v2 # we add first step to use checkout action to check out the latest version
+      # this are just the references to the scripts which runs thus its a good idea to specify the version.
+      - name: Use Node.js version 16
+        uses: actions/setup-node@v2
+        with: 
+          node-version: '16' # setup node with configuration parameter node-version as 16
+      # we can also run our own commands by passing -run as step
+      - run: npm install
+      - run: npm run build --prefix client
+  deploy:
+    needs: build # run deploy after build
