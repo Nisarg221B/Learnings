@@ -5,11 +5,14 @@ on: # on property states events on which this workflow file should run
   pull_request:
     branches: [ node ]
   path:
-    - node/"10. nasa-project ci-cd"
-  working-directory:
-      description: Working directory to use
-      type: string
-      default: "./node/'10. nasa-project ci-cd'"
+    - "node/'10. nasa-project ci-cd'"
+
+defaults:
+  run:
+    working-directory:
+        description: Working directory to use
+        type: string
+        default: "./node/'10. nasa-project ci-cd'"
 
 
 # jobs states the sequence of tasks which should be executed when any of the above event occurs
