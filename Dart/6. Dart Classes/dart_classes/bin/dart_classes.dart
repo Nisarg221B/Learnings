@@ -71,7 +71,7 @@ void instant_variables_demo() {
   print('A.f; --> ${A.f}');
   A.g = 6;
   print('A.g; --> ${A.g}');
-  A.h = 7;
+  A.h = 7; 
   print('A.h; --> ${A.h}');
   print('A.i; --> ${A.i}');
 }
